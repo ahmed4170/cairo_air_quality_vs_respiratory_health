@@ -1,18 +1,23 @@
-# Cairo_Air_Quality_VS_Respiratory_Health
+# 🌫️ Cairo Air Quality VS Respiratory Health
+
+> Investigating the relationship between air pollution and respiratory health in Cairo, Egypt — one of the most polluted cities in the world.
 
 ---
 
-Team Members
-Ahmed Haytham
-Amr Mohamed
-Kerillos Milad
-Mohaned Mohamed
-Youssef Mostafa
+## 👥 Team Members
+
+| Name | Role |
+|------|------|
+| Ahmed Haytham | Data Analyst |
+| Amr Mohamed | Data Analyst |
+| Kerillos Milad | Data Analyst |
+| Mohaned Mohamed | Data Analyst |
+| Youssef Mostafa | Data Analyst |
+
+**Instructor:** Amal Mahmoud
 
 ---
-Instructor
-Amal Mahmoud
 
----
-Project Description
+## 📌 Project Description
+
 A data analysis project investigating the relationship between air pollution levels and respiratory health in Cairo, Egypt — one of the most polluted cities in the world.
