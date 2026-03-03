@@ -11,7 +11,7 @@
 | Ahmed Haytham | Data Analyst |
 | Amr Mohamed | Data Analyst |
 | Kerillos Milad | Data Analyst |
-| Mohaned Mohamed | Data Analyst |
+| Mohanad Mohamed | Data Analyst |
 | Youssef Mostafa | Data Analyst |
 
 **Instructor:** Amal Mahmoud
