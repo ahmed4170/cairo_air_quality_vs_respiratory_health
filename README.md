@@ -14,7 +14,7 @@
 | Mohanad Mohamed | Data Analyst |
 | Youssef Mostafa | Data Analyst |
 
-**Instructor:** Amal Mahmoud
+**Supervised By:** Amal Mahmoud
 
 ---
 
