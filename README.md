@@ -135,7 +135,7 @@ The cleaned data is structured as a **Star Schema** — one fact table and three
    - **OLS Multiple Regression** — deaths ~ PM2.5 + GDP growth + inflation (R² = 0.880)
 5. **Forecasting** — a two-stage Linear/Ridge Regression pipeline projecting PM2.5, deaths, DALYs, and population from 2024–2033.
 
-📄 See [`CAQVSRH_Documentation.docx`](./CAQVSRH_Documentation.docx) for the complete write-up, including every test's null hypothesis, result table, and interpretation.
+📄 See [`CAQVSRH_Documentation.pdf`](https://github.com/ahmed4170/cairo_air_quality_vs_respiratory_health/blob/a3137aad46a1f9549f7894ca18c41e569b7c8712/Project%20Documentation/CAQVSRH_Documentation.pdf). for the complete write-up, including every test's null hypothesis, result table, and interpretation.
 
 ---
 
