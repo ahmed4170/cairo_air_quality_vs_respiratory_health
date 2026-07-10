@@ -44,7 +44,7 @@ The pipeline integrates **three real-world datasets**, cleans and joins them int
 - 💸 **Inflation shocks compound the crisis independently of pollution.** GDP growth and inflation show no direct correlation with PM2.5 (p > 0.05), but inflation spikes (up to 33.9%) coincide with reduced healthcare affordability.
 - 📉 **Improvement has been partial, not sufficient.** Despite some air quality gains, mortality and DALYs remain disproportionately high — current interventions haven't yet produced proportional health gains.
 
-> Full statistical derivations, test tables, and detailed insights are documented in [`CAQVSRH_Documentation.pdf`](./CAQVSRH_Documentation.pdf).
+> Full statistical derivations, test tables, and detailed insights are documented in [`CAQVSRH_Documentation.pdf`](Project_Documentation/CAQVSRH_Documentation.pdf).
 
 ---
 
