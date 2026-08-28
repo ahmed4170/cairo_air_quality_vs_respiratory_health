@@ -1,10 +1,10 @@
 # 🌫️ Cairo Air Quality vs. Respiratory Health
 
-**Investigating the relationship between air pollution and respiratory health in Cairo, Egypt — one of the most polluted cities in the world.**
+**Investigating the relationship between air pollution and respiratory health in Cairo, Egypt one of the most polluted cities in the world.**
 
-A multi-tool, end-to-end data analysis project combining global air quality data, Egypt-specific disease burden data, and macroeconomic indicators to statistically test — and quantify — the link between PM2.5 pollution and respiratory disease outcomes.
+A multi tool, end-to-end data analysis project combining global air quality data, Egypt-specific disease burden data, and macroeconomic indicators to statistically test — and quantify — the link between PM2.5 pollution and respiratory disease outcomes.
 
-*DEPI — Digital Egypt Pioneers Initiative | Track: Data Analysis Specialist | 2025–2026*
+*DEPI : Digital Egypt Pioneers Initiative | Track: Data Analysis Specialist | 2025–2026*
 
 ---
 
