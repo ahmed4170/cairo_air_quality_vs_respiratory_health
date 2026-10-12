@@ -8,6 +8,14 @@ import streamlit as st
 import warnings
 warnings.filterwarnings('ignore')
 
+st.set_page_config(
+    page_title="Egypt Respiratory Health & Macroeconomic Burden",
+    page_icon="🫁",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
+
 # =============================================================================
 # PART 1: ETL PIPELINE & DATA MODELING (STAR SCHEMA)
 # =============================================================================
@@ -42,7 +50,12 @@ def load_and_model_data():
         dim_macro['inflation'] = dim_macro['inflation'] * 100
 
     # Star Schema Join
-    dim_macro_clean = dim_macro.drop(columns=['year', 'covid_period'], errors='ignore')
+    # Keep year/COVID fields from the macro dimension when the fact table
+    # does not already contain them; avoid duplicate columns after the join.
+    macro_columns_to_drop = [
+        col for col in ["year", "covid_period"] if col in fact_health.columns
+    ]
+    dim_macro_clean = dim_macro.drop(columns=macro_columns_to_drop, errors="ignore")
     dim_demo_clean = dim_demo.drop(columns=['age_category'], errors='ignore') if 'age_category' in fact_health.columns else dim_demo
 
     master_df = fact_health.merge(dim_cause, on="cause_key", how="inner") \
@@ -122,12 +135,7 @@ def run_statistical_suite(data):
 # =============================================================================
 # PART 3: STREAMLIT DASHBOARD UI
 # =============================================================================
-st.set_page_config(
-    page_title="Egypt Respiratory Health & Macroeconomic Burden",
-    page_icon="🫁",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+
 
 # Custom CSS for Large Executive Fonts, Colors & 3D Flip Cards
 st.markdown("""
@@ -203,6 +211,148 @@ st.markdown("""
         line-height: 1.5;
         font-weight: 500;
     }
+
+
+    /* Smooth page entrance */
+    .stApp {
+        animation: pageFadeIn 0.65s ease-out both;
+    }
+
+    @keyframes pageFadeIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Animated metric cards */
+    div[data-testid="metric-container"] {
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        animation: cardFadeIn 0.6s ease both;
+        min-width: 0;
+    }
+
+    div[data-testid="metric-container"]:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 210, 255, 0.14);
+    }
+
+    @keyframes cardFadeIn {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Flexible dashboard spacing */
+    .block-container {
+        width: 100%;
+        max-width: 1800px;
+        padding-left: clamp(0.75rem, 3vw, 2.5rem) !important;
+        padding-right: clamp(0.75rem, 3vw, 2.5rem) !important;
+    }
+
+    /* Keep charts within their containers */
+    div[data-testid="stPlotlyChart"],
+    div[data-testid="stArrowVegaLiteChart"] {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    /* Responsive 3D flip cards */
+    .flip-card {
+        height: clamp(240px, 25vw, 300px);
+        min-width: 0;
+        margin-bottom: 1rem;
+    }
+
+    .flip-card-inner { border-radius: 15px; }
+
+    .flip-card-front,
+    .flip-card-back {
+        box-sizing: border-box;
+        overflow-wrap: anywhere;
+        padding: clamp(12px, 2vw, 24px);
+    }
+
+    .card-title {
+        font-size: clamp(1.05rem, 1.5vw, 1.6rem) !important;
+    }
+
+    .card-icon {
+        font-size: clamp(2rem, 3vw, 3rem) !important;
+    }
+
+    .card-text {
+        font-size: clamp(0.88rem, 1.1vw, 1.15rem) !important;
+        line-height: 1.5;
+    }
+
+    /* Tablets and small laptops */
+    @media (max-width: 992px) {
+        .block-container { padding-top: 1.5rem !important; }
+        .flip-card { height: 250px; }
+        .stTabs [data-baseweb="tab"] {
+            font-size: 0.95rem !important;
+            padding: 8px;
+        }
+    }
+
+    /* Phones */
+    @media (max-width: 600px) {
+        .block-container {
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
+            padding-left: 0.65rem !important;
+            padding-right: 0.65rem !important;
+        }
+
+        p, li, span, label { font-size: 0.95rem !important; }
+
+        div[data-testid="metric-container"] {
+            padding: 10px;
+            border-left-width: 3px;
+        }
+
+        div[data-testid="metric-container"] div[data-testid="stMetricValue"] {
+            font-size: 1.35rem !important;
+            overflow-wrap: anywhere;
+        }
+
+        div[data-testid="stMetricLabel"] > div,
+        div[data-testid="metric-container"] label,
+        div[data-testid="stMetricLabel"] p {
+            font-size: 0.8rem !important;
+        }
+
+        .flip-card {
+            height: 230px;
+            margin-bottom: 0.5rem;
+        }
+
+        .flip-card-front,
+        .flip-card-back { padding: 12px; }
+
+        .card-title { font-size: 1.05rem !important; }
+        .card-text { font-size: 0.85rem !important; }
+
+        .stTabs [data-baseweb="tab-list"] { gap: 4px; }
+
+        .stTabs [data-baseweb="tab"] {
+            white-space: normal;
+            font-size: 0.8rem !important;
+            padding: 6px 4px;
+        }
+    }
+
+    /* Respect accessibility preferences */
+    @media (prefers-reduced-motion: reduce) {
+        .stApp,
+        div[data-testid="metric-container"] {
+            animation: none !important;
+            transition: none !important;
+        }
+
+        .flip-card-inner { transition: none !important; }
+    }
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -296,8 +446,19 @@ with tab1:
     c3, c4 = st.columns([1, 1.6])
     with c3:
         st.markdown("### 🌫️ PM2.5 Risk Tier Distribution")
-        pm_dist = filtered_df["pm_risk_tier"].value_counts().reset_index()
-        fig_donut = px.pie(pm_dist, values="count", names="pm_risk_tier", hole=0.6, color_discrete_sequence=COLOR_PALETTE)
+        pm_dist = (
+            filtered_df["pm_risk_tier"]
+            .value_counts()
+            .rename_axis("pm_risk_tier")
+            .reset_index(name="count")
+        )
+        fig_donut = px.pie(
+            pm_dist,
+            values="count",
+            names="pm_risk_tier",
+            hole=0.6,
+            color_discrete_sequence=COLOR_PALETTE,
+        )
         fig_donut.update_traces(textposition="inside", textinfo="percent+label")
         fig_donut.update_layout(showlegend=False)
         st.plotly_chart(style_chart(fig_donut), use_container_width=True)
